@@ -1,0 +1,77 @@
+/* Created by Aquariuslt on 5/20/17.*/
+
+
+navbarController.$inject = ['$rootScope','$scope','$cookies'];
+function navbarController($rootScope,$scope, $cookies) {
+
+    var vm = this;
+
+    vm.menuLeft = [];
+    vm.menuRight = [];
+
+    vm.isBackShow = false;
+    vm.isUserMsgShow = false;
+
+    vm.userMsg = {};
+
+    vm.showBack = function () {
+        vm.isBackShow = true;
+    }
+    vm.hideBack = function () {
+        vm.isBackShow = false;
+    }
+
+    vm.userMsg = $rootScope.customer;
+
+<<<<<<< HEAD
+    vm.userMsg = angular.toJson(sessionStorage.getItem('customer'));
+    console.log("customer :" + vm.userMsg);
+
+    if(sessionStorage.getItem('customer')){
+        // vm.showUserMsg($rootScope.customer);
+        vm.menuRight = [];
+        vm.userMsg = angular.toJson(sessionStorage.getItem('customer'));
+        console.log("customer :" + vm.userMsg);
+        vm.isUserMsgShow = true;
+=======
+        vm.menuLeft = $rootScope.foodTypes;
+
+        vm.userMsg = $cookies.getObject('customer');
+        console.log("customer :" + $cookies.getObject('customer'));
+>>>>>>> 0acc9dd833f4dca33190ec1d609622448d7d5d1d
+
+        if ($cookies.getObject('customer')) {
+            vm.menuRight = [];
+            vm.userMsg = $cookies.getObject('customer');
+            console.log("customer :" + vm.userMsg);
+            vm.isUserMsgShow = true;
+
+            vm.menuRight = [
+                {
+                    state: 'logout',
+                    displayName: 'Logout'
+                }
+            ];
+        } else {
+            vm.isUserMsgShow = false;
+            vm.menuRight = [
+                {
+                    state: 'login',
+                    displayName: '登录'
+                },
+                {
+                    state: 'register',
+                    displayName: '注册'
+                }
+            ];
+        }
+        vm.menuRight.push(
+            {
+                state: 'order',
+                displayName: '我的订单'
+            }
+        )
+
+}
+
+module.exports = navbarController;

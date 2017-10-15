@@ -1,0 +1,63 @@
+
+<style>
+    .user-img{
+        border-radius: 30px;
+        width: 45px;
+        height: 45px;
+        margin-top: -10px;
+        margin-bottom: -10px;
+    }
+</style>
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="navbarController as vm"
+     xmlns:javascript="http://www.w3.org/1999/xhtml" >
+    <div class="container" style="width:100%;background-color: #2d2d2d">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+      <a class="navbar-brand" ui-sref="home" style="font-size: 2em;">ceat</a>
+            <!--<a class="navbar-brand" onClick="javascript:history.back(1)" style="font-size: 2em;  margin-top: 15px; margin-left: 50px">Back</a>-->
+
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li  class="active"><a onClick="javascript:history.back(1)" ng-if="vm.isBackShow">返回</a></li>
+                <li  ng-repeat="menu in vm.menuLeft track by $index">
+
+                    <a  ui-sref="{{menu.id}}" style="vertical-align: middle;">
+                        {{menu.type}}
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right"  id ="user-info" >
+                <li ng-if="vm.isUserMsgShow">
+                    <a ui-sref="info">
+                        <img class="user-img" class="headPic" ng-src="{{vm.userMsg.headPic}}">
+                        <!--<img class="user-img" ng-src="/src/image/bg-1.jpg" class="headPic">-->
+                        <span>{{vm.userMsg.nickName}}</span>
+                    </a></li>
+                <li  ng-if="vm.isUserMsgShow">
+              <a   ng-click="vm.logout()" >
+                        {{vm.menuLogout.displayName}}
+                    </a>
+                </li>
+                <li  ng-if="vm.isUserMsgShow">
+              <a  ui-sref="{{vm.menuOrder.state}}">
+                        {{vm.menuOrder.displayName}}
+                    </a>
+                </li>
+                <li  ng-repeat="menu in vm.menuRight track by $index">
+              <a  ui-sref="{{menu.state}}">
+                        {{menu.displayName}}
+                    </a>
+                </li>
+                <li></li>
+
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>

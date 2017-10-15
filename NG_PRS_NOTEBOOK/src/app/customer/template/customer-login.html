@@ -1,0 +1,95 @@
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../../../src/css/login/reset.css">
+  <link rel="stylesheet" href="../../../src/css/login/supersized.css">
+  <link rel="stylesheet" href="../../../src/css/login/style.css">
+  <script type="text/javascript" src="../../../src/js/login/jquery-1.11.1.min.js"></script>
+  <meta charset="UTF-8">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Login</title>
+  <style>
+    body{
+        background-image: url(/src/image/bg-3.jpg);
+    }
+    #home-btn{
+        display: inline-block;
+    }
+    #back-btn{
+        display: inline-block;
+    }
+
+  </style>
+    <a id="back-btn" onClick="javascript:history.back(1)" style="font-size: 1.2em; margin: 0 20px; margin-top: 10px; margin-left: 40px; float: left ">返回</a>
+    <a id="home-btn"  ui-sref="home" style="font-size: 1.2em; margin: 0 20px; margin-top: 10px; float: left ">ceat</a>
+    <a  ui-sref="register" style="font-size: 1.2em; margin: 0 20px; margin-top: 10px; float: left ">Regist</a>
+</head>
+<body>
+
+    <div class="container">
+
+      <form align="center" id="loginForm" ng-controller="loginController as vm">
+        <h1>
+          <font color="white">Login</font>
+        </h1>
+
+        <input type="text" name="id" class="id" ng-model="vm.loginUser.customerId" class="form-control"  placeholder="userId" required>
+
+
+        <input type="password" name="password" class="password" ng-model="vm.loginUser.password" class="form-control"  placeholder="password" required>
+
+        <button ng-click="login()" class="btn btn-success" style="margin-left: 0px; width:100px">Sign in</button>
+          <div class="error">
+              <span>+</span>
+          </div>
+
+      </form>
+        <br><br>
+      <!--<a  ui-sref="register" style="margin: auto;">-->
+        <!--Sign up here-->
+      <!--</a>-->
+
+        <span style="color:red" ng-show="loginForm.vm.loginUser.customerId.$invalid">
+ 用户名是必须的。
+  </span>
+        <span style="color:red" ng-show="loginForm.vm.loginUser.customerId.$valid">
+ 用户名是必须的。
+  </span>
+    </div>
+
+<script src="../../../src/js/login/supersized.3.2.7.min.js"></script>
+<script src="../../../src/js/login/supersized-init.js"></script>
+<script src="../../../src/js/login/scripts.js"></script>
+
+<script>
+    jQuery(document).ready(function() {
+        $('.container form').submit(function(){
+            var username = $(this).find('input[name=id]').val();
+            var password = $(this).find('input[name=password]').val();
+            if(username == '') {
+                $(this).find('.error').fadeOut('fast', function(){
+                    $(this).css('top', '27px');
+                });
+                $(this).find('.error').fadeIn('fast', function(){
+                    $(this).parent().find('input[name=name]').focus();
+                });
+                return false;
+            }
+            if(password == '') {
+                $(this).find('.error').fadeOut('fast', function(){
+                    $(this).css('top', '96px');
+                });
+                $(this).find('.error').fadeIn('fast', function(){
+                    $(this).parent().find('input[name=password]').focus();
+                });
+                return false;
+            }
+        });
+        $('.container form .name, .container form .password').keyup(function(){
+            $(this).parent().find('.error').fadeOut('fast');
+        });
+    });
+</script>
+
+</body>
+

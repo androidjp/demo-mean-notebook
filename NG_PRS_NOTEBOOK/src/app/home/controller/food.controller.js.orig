@@ -1,0 +1,35 @@
+foodController.$inject = ['$cookies','$rootScope','homeService']
+function foodController($cookies,$rootScope,homeService){
+
+    var vm = this;
+    vm.foodList = [];
+    vm.foodTypes = homeService.getAllFoodType();
+
+    vm.selectedMerchant = angular.fromJson(sessionStorage.getItem('selectedMerchant'));
+
+    vm.foodList = homeService.getFoodListByMerchantId(vm.selectedMerchant.id);
+
+
+    ///获取某个类型的所有菜品
+    vm.getFoodListByFoodType = function(foodTypeId){
+        console.log("获取 类型"+ foodTypeId+"的菜品列表");
+        vm.foodList = homeService.getFoodListByMerchantIdAndFoodType(vm.selectedMerchant.id, foodTypeId);
+    }
+
+    ///点击菜品，添加购物车
+    vm.addShoppingCart = function($index){
+<<<<<<< HEAD
+        //扔进去cookie中
+        // var shoppingCart = $cookies.getObject('shopping_cart');
+        // shoppingCart.push
+        //
+=======
+>>>>>>> origin/ceat
+        var selectedFood = vm.foodList[$index];
+        /// 添加购物车中
+        $rootScope.addFood(selectedFood);
+
+    }
+}
+
+module.exports = foodController;

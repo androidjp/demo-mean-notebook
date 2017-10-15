@@ -1,0 +1,26 @@
+
+
+<style>
+    body{
+        background-image:url(/src/image/bg-3.jpg);
+    }
+</style>
+<link rel="stylesheet" href="src/js/sweetalert/sweetalert.css">
+<navbar></navbar>
+<section style="margin-top: 100px">
+
+
+    <div class="row panel-normal">
+
+            <div class="col-md-3 panel-tab" ng-repeat="muser in vm.merchantList track by $index">
+                <a href="#" class="thumbnail" ui-sref="food" ng-click="vm.seeFoodListOfMerchant($index)">
+                    <img ng-src="{{muser.img}}" alt="" class="img-normal-size-center img-thumbnail">
+                    <p><span class="label label-info">店名：{{muser.storeName}}</span></p>
+                    <p><span class="label label-info">地址：{{muser.address}}</span></p>
+                </a>
+            </div>
+    </div>
+
+</section>
+
+

@@ -1,0 +1,94 @@
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<navbar></navbar>
+<section style="margin-top:80px">
+
+    <div class="container orderListContainer">
+
+        <div class="list-group" id="order-list">
+            <a class="list-group-item"  ng-repeat="order in vm.orderList track by $index">
+
+                <p class="list-group-item-text">
+                    <h4 class="list-group-item-heading">总价：${{order.total}}</h4>
+                    <h5 class="list-group-item-heading">
+                        商店：{{order.storeName}}
+                    </h5>
+                    <h5 class="list-group-item-heading">
+                        收货地址：{{order.address}}
+                    </h5>
+                    <h5 class="list-group-item-heading">
+                        订单状态：{{vm.showStatus(order.state)}}
+                    </h5>
+                    <button class="btn btn-success btn-show-order-list" ng-click="vm.toggleOrderItemList($index)">查看订单详情</button>
+                    <button class="btn btn-info btn-confirm"  ng-if="order.isShowBtnConfirm" ng-click="vm.confirmOrder($index)">订单确认</button>
+                    <button class="btn btn-success btn-assess" ng-if="order.isShowBtnAssess" ng-click="vm.showModelAssess($index)">评价</button>
+                    <button class="btn btn-danger btn-complain" ng-if="order.isShowBtnComplain" ng-click="vm.showModelComplain($index)">投诉</button>
+
+                    <ul class="list-group" ng-if="order.isShowOrderItem">
+                        <li class="list-group-item" ng-repeat="orderItem in order.items track by $index">
+                            <img class="img-small-size" ng-src="{{orderItem.img}}" >
+                            <span>{{orderItem.name}}---数量：{{orderItem.count}}---价格：$ {{orderItem.price*orderItem.count}}</span>
+                        </li>
+                    </ul>
+                </p>
+
+                <h4 class="list-group-item-heading" ng-if="vm.orderList.length==0">
+                    您暂无订单记录
+                </h4>
+            </a>
+
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="order-assess-model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">您的评价，很重要哟！</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="star-level">选一下吧~</p>
+                        <div id="star"></div>
+                        <p>评价内容</p>
+                        <input type="hidden" id="input-order-assess-cid" >
+                        <input type="hidden" id="input-order-assess-mid" >
+                        <input type="hidden" id="input-order-assess-oid" >
+                        <input type="hidden" id="input-order-assess-cname" >
+
+                        <input type="text" class="form-control" id="input-order-assess" placeholder="输入你的评价吧（最多50个字）" maxlength="50">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button id="btn-order-assess" type="button" class="btn btn-primary">确认评价</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="order-complain-model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">您的投诉</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>投诉内容</p>
+                        <input type="hidden" id="input-order-complain-cid" >
+                        <input type="hidden" id="input-order-complain-mid" >
+                        <input type="hidden" id="input-order-complain-cname" >
+                        <input type="hidden" id="input-order-complain-mname" >
+                        <input type="hidden" id="input-order-complain-m_store_name">
+                        <input type="text" class="form-control" id="input-order-complain" placeholder="输入你的评价吧（最多50个字）" maxlength="50">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button id="btn-order-complain" type="button" class="btn btn-primary">确认投诉</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

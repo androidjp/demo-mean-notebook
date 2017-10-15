@@ -1,0 +1,231 @@
+<!-- shopping cart  -->
+<style>
+    .cart-body{
+        border:1px blue solid;
+        margin-top:30px;
+        display: block;
+        width: 550px;
+        height: 560px;
+        position: fixed;
+        bottom: 0px;
+        right: 0px;
+        overflow: scroll;
+        border: 1px lightgray solid;
+        box-radius: 500px;
+    }
+    .cart-trigger {
+
+        width: 50px;
+        height: 50px;
+        position: fixed;
+        bottom: 100px;
+        right: 50px;
+        border-radius: 5px;
+        font-size: 1em;
+        font-weight: bold;
+        font-color: red;
+        text-align:center;
+
+    }
+    .cart-item-block {
+        margin: 10px;
+    }
+
+    .btn-clear,.btn-close-cart {
+        float: right;
+        display: inline-block;
+        color: gray;
+        margin-right:0px;
+    }
+    .btn-checkout{
+        float:left;
+        display: inline-block;
+        color: gray;
+        margin:0 10px;
+        margin-left: 0px;
+        color: #fff;
+    }
+    .cart-title {
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+    .cart-header {
+        position: fixed;
+        width: 550px;
+        right: 0px;
+        bottom: 560px;
+        background-color: lightgray;
+        font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+        box-radius: 50px;
+    }
+
+    .cart-footer {
+        position: fixed;
+        right: 0px;
+        bottom: 0px;
+        width: 550px;
+        font-size: 1.6em;
+        font-weight: bold;
+        background-color: lightgray;
+        box-radius: 50px;
+    }
+
+
+    .cart-food-name,.cart-food-img
+    {
+        display: inline-block;
+        margin: 5px;
+        width:50px;
+
+    }
+
+
+    .cart-food-name
+    {
+        display: inline-block;
+        width:80px;
+        margin: 5px;
+
+    }
+   .cart-food-price,.cart-food-count
+    {
+        display: inline-block;
+        width:30px;
+        margin: 5px;
+
+    }
+
+    .cart-body {
+        background-color: #EFF;
+    }
+
+    .cart-trigger {
+
+        border-radius: 30px;
+        font-size: 2em;
+        font-weight: bold;
+        color: red;
+    }
+
+
+    .trigger-img {
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+    }
+
+    .total-count {
+        position: absolute;
+        right: 30px;
+        bottom: 70px;
+        z-index:1;
+
+    }
+
+    .btn-add-cart,.btn-sub-cart{
+        width: 30px;
+        height: 21px;
+        line-height: 21px;
+        padding: 0 5px;
+        margin: 0 8px;
+        background: #ffffcc;
+        /*color: #fff;*/
+        text-decoration: none;
+
+    }
+    .btn-del-cart {
+        width: 30px;
+        height: 21px;
+        line-height: 21px;
+        padding: 0 5px;
+        margin: 0 8px;
+        background: #ffffcc;
+        /*color: #fff;*/
+        text-decoration: none;
+    }
+    .cart-food-name-title,.cart-food-price-title,.cart-food-count-title{
+        display: inline-block;
+    }
+    .cart-food-name-title{
+        width:200px;
+    }
+    .cart-title-img{
+        width: 45px;
+        height: 45px;
+    }
+    .close-btn-img{
+        width: 40px;
+        height: 40px;
+    }
+</style>
+
+<div class="container" ng-controller="cartController as vm"  >
+    <div class="cart-container" ng-if="vm.cart_state">
+        <div class="shopping-cart">
+            <div class="cart-header">
+                <a class="btn-close-cart" style="margin-top: 5px;" ng-click="vm.close()"><img class="close-btn-img" src="/src/image/close.png"></a>
+               <img class="cart-title-img" src="/src/image/cart1.png">
+                <!--<span class="cart-title">购物车</span>-->
+            </div>
+            <div class="cart-body">
+
+                <div ng-repeat="food in vm.shopping_cart.foods track by $index">
+                    <div>
+                    <div class="cart-food-name">{{food.name}}</div>
+                    <img src="/src/image/bg-1.jpg" class="cart-food-img">
+                    <div class="cart-food-price">{{food.price}}</div>
+                    <button class="btn-sub-cart" class="btn btn-primary" ng-click="vm.subCartFood($index)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+                    <div class="cart-food-count">{{food.count}}</div>
+                    <button class="btn-add-cart" class="btn btn-primary" ng-click="vm.addCartFood($index)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                    <button class="btn-del-cart" class="btn btn-primary" ng-click="vm.delCartFood($index)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="cart-footer">
+                <span class="total-cost">${{vm.shopping_cart.totalCost}}</span>
+                <a class="btn-checkout btn btn-primary" ng-click="vm.showOrderDetail()">结算</a>
+                <a class="btn-clear btn btn-danger" ng-click="vm.clearCart()" style="color: #fff; ">清空</a>
+
+            </div>
+        </div>
+
+
+    </div>
+    <a class="cart-trigger" ng-if="vm.trigger_state" ng-click="vm.open()"><img class="trigger-img" src="/src/image/cart2.png"><span class='total-count'>{{vm.shopping_cart.totalCount}}</span></a>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-order-detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">订单信息</h4>
+                </div>
+                <div class="modal-body">
+                    <h3>对<span class="label label-default">{{vm.merchant.storeName}}</span>的订单</h3>
+                    <p>总价：<span class="label label-warning">${{vm.shopping_cart.totalCost}}</span></p>
+                    <p ng-if="vm.shopping_cart.address">收货地址：{{vm.shopping_cart.address}}</p>
+                    <button type="button" class="btn btn-default" ng-if="vm.shopping_cart.address !=null" ng-click="vm.modifyAddress()">更换收货地址</button>
+                    <button type="button" class="btn btn-danger" ng-if="vm.shopping_cart.address ==null"  ng-click="vm.modifyAddress()">您还没有默认收货地址，点击去设置吧</button>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="cartItem in vm.shopping_cart.foods track by $index">
+                            <img class="img-small-size" ng-src="{{cartItem.img}}" >
+                            <span>{{cartItem.name}}---数量：{{cartItem.count}}---价格：$ {{cartItem.price*cartItem.count}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button id="btn-order-complain" type="button" class="btn btn-primary" ng-click="vm.ordering()">确认下单</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end shopping cart  -->
