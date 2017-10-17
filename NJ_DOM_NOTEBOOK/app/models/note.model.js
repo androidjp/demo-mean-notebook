@@ -1,5 +1,6 @@
 /// note mongoDB Operator
 const uuid = require('uuid/v4');
+const _ = require('lodash');
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
@@ -7,17 +8,19 @@ var NoteSchema = Schema({
 
     noteId: {
         type: String,
-        unique: true,
-        required: true
+        unique: true
     },
     status: {
-        type: Integer,
+        type: Number,
         default: 0,
     },
     title: String,
     filePath: String,
     cache: String,
-    authorId: String
+    authorId: {
+        type:String,
+        require:true
+    }
 }, {
     collection: 'note'
 }, {
@@ -34,8 +37,18 @@ var NoteSchema = Schema({
 //
 NoteSchema.pre('save', function (next) {
     var note = this;
-    note.noteId = uuid();
+    if(_.isEmpty(note.noteId)){
+        note.noteId = uuid();
+    }
     next();
+});
+
+NoteSchema.pre('update', function(next){
+   var note = this;
+   if(_.isEmpty(note.noteId)){
+       note.noteId = uuid();
+   } 
+   next();
 });
 
 

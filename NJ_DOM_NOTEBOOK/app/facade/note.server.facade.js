@@ -18,13 +18,14 @@ module.exports={
 
 // get noteList
 function getNoteListByCustomerId(customerId  , callback){
-    if(_.isEmpty(customerId)){
+    if(_.isUndefined(customerId) || _.isNull(customerId)||_.isEmpty(customerId)){
         callback(new Error("The customerId should not be empty!",null));
         return;
     }
     noteModel.find({authorId:customerId}, function(err,notes){
         if(err){
             callback(err, null);
+            return;
         }
          else callback(null,notes);
     });
@@ -75,16 +76,12 @@ function addNote(note , callback){
         callback(new Error("The note should no be empty!"), null);
         return;
     }
-    if(_.isEmpty(note.authorId)){
+    if( _.isUndefined(note.authorId)||_.isNull(note.authorId)||_.isEmpty(note.authorId)){
         callback(new Error("The authorId should no be empty!"), null);
         return;
     }
-    if(_.isNull(note.title)){
+    if( _.isUndefined(note.title)||_.isNull(note.title)||_.isEmpty(note.title)){
         callback(new Error("The note title should no be empty!"), null);
-        return;
-    }
-    if(_.isNull(note.cache)){
-        callback(new Error("The note content should no be empty!"), null);
         return;
     }
     let noteInstance = new noteModel(note);
@@ -104,23 +101,23 @@ function updateNote(note , callback){
         callback(new Error("The note should no be empty!"), null);
         return;
     }
-    if(_.isNull(note.title)){
-        callback(new Error("The note title should no be empty!"), null);
+    if( _.isUndefined(note.authorId)||_.isNull(note.authorId)||_.isEmpty(note.authorId)){
+        callback(new Error("The authorId should no be empty!"), null);
         return;
     }
-    if(_.isNull(note.cache)){
-        callback(new Error("The note content should no be empty!"), null);
+    if( _.isUndefined(note.title)||_.isNull(note.title)||_.isEmpty(note.title)){
+        callback(new Error("The note title should no be empty!"), null);
         return;
     }
 
     noteModel.update({noteId: note.noteId}, {$set: note},
         {upset: true}
-        , function (err) {
+        , function (err ,res) {
             if (err) {
-                callback(err);
+                callback(err,null);
                 return;
             }
-            callback(null);
+            callback(null,res);
         });
 }
 

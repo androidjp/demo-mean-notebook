@@ -23,13 +23,8 @@ function deleteNote(noteId, callback){
     noteFacade.deleteNote(noteId, callback);
 }
 
-function saveNote(authorId, title, content, callback){
-    var note = {
-        title:title,
-        cache: content,
-        authorId:authorId
-    };
-    noteFacade.addNote(note, callback);
+function saveNote(note, callback){
+    noteFacade.updateNote(note, callback);
 }
 
 function saveNoteToFile(noteId,callback){

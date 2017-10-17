@@ -42,8 +42,7 @@ app.all('*', function (req, res, next) {
 config.getGlobbedFiles('./app/routes/**/*.js').forEach(function(routePath) {
     require(path.resolve(routePath))(router);
 });
-app.use(envConfig.NJ_DOM_CEAT.context, router);
-
+app.use(envConfig.NJ_DOM_NOTEBOOK.context, router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -2,7 +2,6 @@ const _ = require('lodash');
 // const uuid = require('uuid/v4');
 // const customerFacade = require('../../app/facade/foodItem.server.facade.js');
 const customerFacade = require('../../app/facade/customer.server.facade');
-const addressFacade = require('../../app/facade/address.server.facade');
 const envConfig = require('../../config/env/config_development');
 var formidable = require('formidable');
 
@@ -62,27 +61,27 @@ function register(req, res, next) {
                     return next(err, req, res);
                 } else {
                     let resCus = result;
-                    let addr = {
-                        customerId: customerMsg.customerId,
-                        content: customerMsg.address,
-                        status: true
-                    };
-                    addressFacade.addAddress(addr, function (err, result) {
-                        if (err) {
-                            return next(new Error(error));
-                        } else {
+                    // let addr = {
+                    //     customerId: customerMsg.customerId,
+                    //     content: customerMsg.address,
+                    //     status: true
+                    // };
+                    // addressFacade.addAddress(addr, function (err, result) {
+                    //     if (err) {
+                    //         return next(new Error(error));
+                    //     } else {
 
-                            var picName = resCus._id + ".jpg";
-                            console.log(files.img.path +"-------------> " + envConfig.upload.headPic + picName);
-                            _f.rename(files.img.path, envConfig.upload.localHeadPic + picName);
+                    //         var picName = resCus._id + ".jpg";
+                    //         console.log(files.img.path +"-------------> " + envConfig.upload.headPic + picName);
+                    //         _f.rename(files.img.path, envConfig.upload.localHeadPic + picName);
 
                             // return res.json(result);
 
                             ///返回注册成功的用户信息
                             resCus.password = null;
                             return res.json(resCus);
-                        }
-                    });
+                    //     }
+                    // });
 
                 }
             });

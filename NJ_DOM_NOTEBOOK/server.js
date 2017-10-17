@@ -21,7 +21,7 @@ var db = mongoose.connect(config.mongodb.uri, config.mongodb.options,function(er
 
 let server = http.createServer(app);
 
-server.listen(config.NJ_DOM_CEAT.port);
+server.listen(config.NJ_DOM_NOTEBOOK.port);
 
 // exception handling
 process.on('uncaughtException', function(err) {
@@ -33,9 +33,9 @@ exports = module.exports = app;
 
 // Logging initialization
 winston.info('------------------------------------------------');
-winston.info(config.NJ_DOM_CEAT.title, 'application started');
+winston.info(config.NJ_DOM_NOTEBOOK.title, 'application started');
 winston.info('Environment:\t\t\t', process.env.NODE_ENV);
-winston.info('Port:\t\t\t\t', config.NJ_DOM_CEAT.port);
+winston.info('Port:\t\t\t\t', config.NJ_DOM_NOTEBOOK.port);
 if (process.env.NODE_ENV === 'secure') {
 	winston.info('HTTPs:\t\t\t\ton');
 }
