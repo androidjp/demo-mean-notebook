@@ -3,32 +3,34 @@ const noteFacade = require('../facade/note.server.facade');
 
 
 module.exports = {
-    getNoteListByCustomerId : getNoteListByCustomerId,
+    getNoteListByCustomerId: getNoteListByCustomerId,
     saveNote: saveNote,
     searchNote: searchNote,
     deleteNote: deleteNote,
-    saveNoteToFile:saveNoteToFile
+    saveNoteToFile: saveNoteToFile
 }
 
-function getNoteListByCustomerId(customerId, callback){
-    noteFacade.getNoteListByCustomerId(customerId , callback);
+function getNoteListByCustomerId(customerId, callback) {
+    noteFacade.getNoteListByCustomerId(customerId, callback);
 }
 
-function searchNote(customerId, title, callback){
+function searchNote(customerId, title, callback) {
     noteFacade.getNoteListByTitle(customerId, title, callback);
 }
 
 
-function deleteNote(noteId, callback){
+function deleteNote(noteId, callback) {
     noteFacade.deleteNote(noteId, callback);
 }
 
-function saveNote(note, callback){
-    noteFacade.updateNote(note, callback);
+function saveNote(note, callback) {
+    if (_.isUndefined(note.noteId) || _.isNull(note.noteId) || _.isEmpty(note.noteId)) {
+        noteFacade.addNote(note, callback);
+    } else {
+        noteFacade.updateNote(note, callback);
+    }
 }
 
-function saveNoteToFile(noteId,callback){
+function saveNoteToFile(noteId, callback) {
 
 }
-
-

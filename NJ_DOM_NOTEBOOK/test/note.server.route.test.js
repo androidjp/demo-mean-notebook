@@ -7,7 +7,7 @@ describe('note.route/test.js', function(){
 
     var testCustomerId = "WUJA13";
     var testNote = {
-        title:'小明治',
+        title:'小生化',
         authorId:testCustomerId
     };
 
@@ -44,11 +44,8 @@ describe('note.route/test.js', function(){
                 .send(testNote)
                 .expect(200, function(err, res){
                     should.not.exist(err);
-                    should.exist(res.body.noteId);
-                    should.equal(testNote.title,res.body.title);
-                    should.equal(testNote.cache, res.body.cache);
-                    should.equal(testNote.authorId,res.body.authorId);
-                    should.equal(testNote.noteId,res.body.noteId);
+                    should.exist(res.body);
+                    should.equal(res.body.ok,1);
                     done();
                 });
         });
