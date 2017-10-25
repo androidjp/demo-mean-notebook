@@ -13,8 +13,8 @@ var pathUtil = require('../util/path-util');
 
 
 const PROTOCOL = 'http://';
-const HOST = '10.222.29.155';
-const PORT = 5001;
+const HOST = '10.222.47.212';
+const PORT = 9901;
 
 var webpackDevConfig = merge(webpackBaseConfig, {
   devtool: 'source-map',
@@ -75,7 +75,7 @@ var webpackDevConfig = merge(webpackBaseConfig, {
     },
     proxy: {
       '/api': {///访问带有/api 的请求，都会转发到本地的8080端口
-        target: 'http://10.222.29.155:8888/NJ_DOM_CEAT', // suppose to update your api to
+        target: PROTOCOL + HOST +':8888/NJ_DOM_NOTEBOOK', // suppose to update your api to
         secure: false,
         ws: true
       },

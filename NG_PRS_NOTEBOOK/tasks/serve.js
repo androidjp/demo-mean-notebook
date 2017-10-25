@@ -8,6 +8,9 @@ var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var addDevServerEntrypoints = require('webpack-dev-server/lib/util/addDevServerEntrypoints');
 
+/**
+ *  dev environment
+ */
 var webpackDevConfig = require('./config/webpack.dev.config');
 
 

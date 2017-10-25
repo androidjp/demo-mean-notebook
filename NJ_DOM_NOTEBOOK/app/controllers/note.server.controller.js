@@ -3,7 +3,8 @@ const noteService = require('../services/note.server.service.js');
 
 module.exports = {
     saveNote:saveNote,
-    getAllNote:getAllNote
+    getAllNote:getAllNote,
+    deleteNote: deleteNote
 }
 
 //save note
@@ -29,6 +30,22 @@ function getAllNote(req, res, next){
     }
 
     noteService.getNoteListByCustomerId(body.customerId,function(err, result){
+        if(err){
+            return next(err, req, res);
+        }
+        return res.json(result);
+    });
+}
+
+
+/// delete note
+function deleteNote(req, res, next){
+    var params = req.params;
+    if(_.isNull(params) || _.isEmpty(params) || _.isUndefined(params.noteId) || _.isNull(params.noteId) || _.isEmpty(params.noteId)){
+        return next(new Error('The customerId is empty'), req, res);
+    }
+
+    noteService.deleteNote(params.noteId, function(err, result){
         if(err){
             return next(err, req, res);
         }

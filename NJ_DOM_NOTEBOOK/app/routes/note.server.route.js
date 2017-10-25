@@ -10,5 +10,8 @@ module.exports = (app) => {
     router.route('/find/:customerId')
         .get(noteController.getAllNote);
 
+    router.route('/delete/:noteId')
+        .delete(noteController.deleteNote);
+
     app.use('/api/note/', router);
 };

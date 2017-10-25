@@ -5,7 +5,9 @@ var sequence = require('gulp-sequence');
 
 var webpack = require('webpack');
 
-
+/**
+ * production environment
+ */
 var webpackProdConfig = require('./config/webpack.prod.config');
 
 gulp.task('webpack', function (done) {
