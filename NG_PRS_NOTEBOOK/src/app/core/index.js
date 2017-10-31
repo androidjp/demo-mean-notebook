@@ -24,7 +24,7 @@ var noteService = require('./services/note.service');
 const moduleName = 'core';
 //-------------------------------------------------------------------------------------------------------
 
-angular.module(moduleName, [])
+angular.module(moduleName,  ['ngAnimate'])
     .config(noteRoutes)
     .factory('noteService', noteService)
     .controller('noteController', noteController)

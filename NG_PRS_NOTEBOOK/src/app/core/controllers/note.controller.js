@@ -18,7 +18,9 @@ function noteController($cookies,$rootScope,noteService){
         }
     });
 
-    
+    vm.enterNoteItem = function(noteItem){
+        
+    };
 
 
     // vm.foodList = [];

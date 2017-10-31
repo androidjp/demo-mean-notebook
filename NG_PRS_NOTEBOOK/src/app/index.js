@@ -27,7 +27,6 @@ module.exports = angular.module('notebook-app', [
     // order,
     // customer,
     'ui.bootstrap',
-    'ngCookies',
     // application modules
     core
 ])
