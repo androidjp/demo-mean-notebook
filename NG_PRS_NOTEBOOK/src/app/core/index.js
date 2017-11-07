@@ -6,8 +6,8 @@
 var angular = require('angular');
 
 /// Dependence Modules
-// var navbarController = require('./../common/components/navbar/controller/navbar.controller');
-// var navbarComponent = require('./../common/components/navbar/navbar');
+var navbarController = require('./../common/components/navbar/controller/flat-navbar.controller');
+var navbarComponent = require('./../common/components/navbar/navbar');
 
 // var cartController = require('./../common/components/cart/cart.controller');
 // var cartComponent = require('./../common/components/cart/cart');
@@ -24,10 +24,13 @@ var noteService = require('./services/note.service');
 const moduleName = 'core';
 //-------------------------------------------------------------------------------------------------------
 
-angular.module(moduleName,  ['ngAnimate'])
+angular.module(moduleName, [])
     .config(noteRoutes)
+    .component('navbar', navbarComponent)
+    .controller('navbarController',navbarController)
     .factory('noteService', noteService)
     .controller('noteController', noteController)
+   
 ;
 
 module.exports = moduleName;

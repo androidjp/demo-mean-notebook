@@ -1,13 +1,15 @@
 noteController.$inject = ['$cookies','$rootScope','noteService']
 function noteController($cookies,$rootScope,noteService){
 
+    
+   
     var vm = this;
 
     vm.noteList = [];
     
     vm.isNoteListEmpty = false;
 
-    noteService.getNoteListByCustomerId("WUJA13", function(err , data){
+    noteService.getNoteListByCustomerId("WUJA13", function( data,err){
         if(err){
             console.error(err);
             vm.isNoteListEmpty = true;
@@ -54,6 +56,8 @@ function noteController($cookies,$rootScope,noteService){
     //     /// 添加购物车中
     //     $rootScope.addFood(selectedFood);
     // }
+
+
 }
 
 module.exports = noteController;

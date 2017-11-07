@@ -53,7 +53,15 @@ describe('note.route/test.js', function(){
     });
 
     describe('/api/note/find/:customerId ------------------------------------------', function(){
-
+        it('should get a normal json array about note' ,function(done){
+            this.timeout(15000);
+            request.get('/NJ_DOM_NOTEBOOK/api/note/find/WUJA13')
+                .expect(200, function(err, res){
+                    should.not.exist(err);
+                    should.exist(res.body);
+                    done();
+                });
+        });
     });
 });
 

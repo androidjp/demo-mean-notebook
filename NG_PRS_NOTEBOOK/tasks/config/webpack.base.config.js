@@ -14,6 +14,7 @@ module.exports = {
     main: './src/main.js',
     styles: './src/styles.css'///带着一个css文件
   },
+  //用来配置应用层的模块解析，即要被打包的模块
   resolve: {
     extensions: ['.js']
   },

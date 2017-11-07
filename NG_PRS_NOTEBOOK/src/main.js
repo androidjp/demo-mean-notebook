@@ -1,6 +1,6 @@
 // app import
 require('./app');
-
+// require('ioredis')
 require('bootstrap')
 require('angular-ui-bootstrap')
 require('./js/ray/jquery.raty')

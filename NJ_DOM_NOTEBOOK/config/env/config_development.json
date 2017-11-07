@@ -1,11 +1,11 @@
 {
     "NJ_DOM_NOTEBOOK" : {
         "title" : "NoteBook server",
-        "port" : 8888,
+        "port" : 9911,
         "context" : "/NJ_DOM_NOTEBOOK"
     },
 	"mongodb" : {
-		"uri":"mongodb:\/\/localhost:27017\/notebookDB",
+		"uri":"mongodb:\/\/10.222.47.212:27017\/notebookDB",
 		"options":{
 			"user": "",
 			"pass": ""
@@ -15,6 +15,6 @@
 	"upload":{
 		"temp":"D:/imgserver/data",
 		"localHeadPic":"D:/imgserver/data/img/",
-		"headPic":"http://10.222.29.155:9000/img/"
+		"headPic":"http://10.222.47.212:9000/img/"
 	}
 }

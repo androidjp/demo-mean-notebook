@@ -5,6 +5,8 @@
 var angular = require('angular');
 var uirouter = require('@uirouter/angularjs');
 var angularCookies = require('angular-cookies');
+// var redis = require('redis');
+
 
 // var home = require('./home');
 // var order = require('./order');
