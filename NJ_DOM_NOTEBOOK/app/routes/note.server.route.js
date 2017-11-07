@@ -8,6 +8,9 @@ module.exports = (app) => {
         .post(noteController.saveNote);
 
     router.route('/find/:customerId')
+        .get(noteController.getAllNoteByCustomerId);
+
+    router.route('/list/date/:page')
         .get(noteController.getAllNote);
 
     router.route('/delete/:noteId')

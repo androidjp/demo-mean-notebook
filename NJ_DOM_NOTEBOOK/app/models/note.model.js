@@ -12,22 +12,20 @@ var NoteSchema = Schema({
     },
     status: {
         type: Number,
-        default: 0,
+        default: 0
     },
     title: String,
     filePath: String,
     cache: String,
+    liked:{
+        type:Number,
+        default:0
+    },
     authorId: {
         type:String,
         require:true
     }
-}, {
-    collection: 'note'
-}, {
-    timestamps: true
-}, {
-    versionKey: false
-});
+},{timestamps:true},{versionKey:false});
 ///index
 
 
@@ -52,4 +50,4 @@ NoteSchema.pre('update', function(next){
 });
 
 
-mongoose.model('Note', NoteSchema);
+mongoose.model('Note', NoteSchema ,'NOTE');

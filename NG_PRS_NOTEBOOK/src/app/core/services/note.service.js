@@ -14,11 +14,20 @@ function noteService($http){
         if(!customerId){
             return callback(new Error("customerId is null"),null);
         }
-        $http.get("/api/note/find/"+customerId).then((err, noteList)=>{
+        $http.get("/api/note/find/"+customerId).then((noteList,err)=>{
             callback(err, noteList);
         });
     }
 
+
+    function getNoteListSortByDate(page , callback){
+        if(page == null || page == undefined){
+            return callback(new Error("page is null"),null);
+        }
+        $http.get("/api/note/list/date/"+page).then((noteList,err)=>{
+            callback(err, noteList);
+        });
+    }
 
     /**
      * 
@@ -97,6 +106,7 @@ function noteService($http){
 
     return {
         getNoteListByCustomerId : getNoteListByCustomerId,
+        getNoteListSortByDate:getNoteListSortByDate,
         createNote : createNote,
         updateNote : updateNote,
         deleteNote : deleteNote

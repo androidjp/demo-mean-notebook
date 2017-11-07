@@ -4,6 +4,7 @@ const noteFacade = require('../facade/note.server.facade');
 
 module.exports = {
     getNoteListByCustomerId: getNoteListByCustomerId,
+    getNoteListSortByCreateTime:getNoteListSortByCreateTime,
     saveNote: saveNote,
     searchNote: searchNote,
     deleteNote: deleteNote,
@@ -12,6 +13,10 @@ module.exports = {
 
 function getNoteListByCustomerId(customerId, callback) {
     noteFacade.getNoteListByCustomerId(customerId, callback);
+}
+
+function getNoteListSortByCreateTime(page , callback){
+    noteFacade.getNoteListSortByCreateTime(page, callback);
 }
 
 function searchNote(customerId, title, callback) {

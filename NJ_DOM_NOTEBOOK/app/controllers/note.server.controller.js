@@ -4,6 +4,7 @@ const noteService = require('../services/note.server.service.js');
 module.exports = {
     saveNote:saveNote,
     getAllNote:getAllNote,
+    getAllNoteByCustomerId:getAllNoteByCustomerId,
     deleteNote: deleteNote
 }
 
@@ -25,6 +26,19 @@ function saveNote(req, res, next){
 // get all note
 function getAllNote(req, res, next){
     var body = req.params;
+    if(_.isEmpty(body) || _.isEmpty(body.page)){
+        return next(new Error('The page is empty'), req, res);        
+    }
+    noteService.getNoteListSortByCreateTime(body.page,function(err, result){
+        if(err){
+            return next(err, req, res);
+        }
+        return res.json(result);
+    });
+}
+
+function getAllNoteByCustomerId(req, res, next){
+    var body = req.params;
     if(_.isEmpty(body) || _.isEmpty(body.customerId)){
         return next(new Error('The customerId is empty'), req, res);        
     }
@@ -34,9 +48,8 @@ function getAllNote(req, res, next){
             return next(err, req, res);
         }
         return res.json(result);
-    });
+    });    
 }
-
 
 /// delete note
 function deleteNote(req, res, next){

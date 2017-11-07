@@ -5,6 +5,7 @@
 var angular = require('angular');
 var uirouter = require('@uirouter/angularjs');
 var angularCookies = require('angular-cookies');
+var ngInfiniteScroll = require('ng-infinite-scroll');
 // var redis = require('redis');
 
 
@@ -29,6 +30,7 @@ module.exports = angular.module('notebook-app', [
     // order,
     // customer,
     'ui.bootstrap',
+    'infinite-scroll',
     // application modules
     core
 ])
