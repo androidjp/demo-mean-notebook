@@ -4,6 +4,8 @@ LoginController.$inject = ['$rootScope','$scope', '$location','$cookies', '$cook
 function LoginController($rootScope,$scope, $location, $cookies, $cookieStore,customerService) {
     var vm = this;
 
+    var location  = $location;
+
     vm.loginUser = {};
 
     //Login
@@ -12,12 +14,17 @@ function LoginController($rootScope,$scope, $location, $cookies, $cookieStore,cu
             .then(function(data){
                 if(data.data){
                     sessionStorage.setItem('customer', angular.toJson(data.data));
-                    $location.path('/');
+                    location.path('/');
                 }else{
-                    $location.path('/login');
+                    location.path('/login');
                 }
             });
     };
+
+    vm.back = function(){
+        location.path('');
+    }
+
 }
 
 module.exports = LoginController;

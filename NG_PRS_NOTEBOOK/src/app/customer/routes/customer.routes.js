@@ -6,7 +6,7 @@ module.exports = function ($stateProvider) {
     .state({
       name: 'login',
       url: '/login',
-      template: require('../template/customer-login.html'),
+      template: require('../template/cus-login.html'),
         controller: "loginController",
         controllerAs: 'vm'
     })

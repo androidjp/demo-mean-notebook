@@ -14,9 +14,9 @@ function flatNavbarController($rootScope,$scope, $cookies,$location) {
 
     vm.navTabs = [
         {
-            title:"个人资料",
+            title:"登录",
             icon:"",
-            url:"",
+            url:"/login",
             active:true,
             subMenu:null
         },
@@ -34,6 +34,14 @@ function flatNavbarController($rootScope,$scope, $cookies,$location) {
         if(navTabs){
             vm.navTabs = navTabs;
         }
+    }
+
+
+    vm.dumpPage = function(item){
+        if(!item.url || item.url.length==0){
+            return;
+        }
+        $location.path(item.url);
     }
 }
 module.exports = flatNavbarController;

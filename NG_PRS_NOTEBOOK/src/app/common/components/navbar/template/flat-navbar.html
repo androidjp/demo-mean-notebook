@@ -13,8 +13,8 @@
       
         <div class="collapse navbar-collapse" id="navbarColor02">
           <ul class="navbar-nav mr-auto">
-            <li ng-repeat="tabItem in vm.navTabs" class="nav-item active">
-              <a class="nav-link" href="#">{{tabItem.title}}
+            <li ng-repeat="tabItem in vm.navTabs" class="nav-item active" ng-click="vm.dumpPage(tabItem)">
+              <a class="nav-link">{{tabItem.title}}
                 <!-- <span class="sr-only">(current)</span> -->
               </a>
             </li>

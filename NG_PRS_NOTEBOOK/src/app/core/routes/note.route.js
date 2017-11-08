@@ -8,6 +8,13 @@ module.exports = function ($stateProvider) {
       controllerAs: 'vm'
     })
     .state({
+      name:'home',
+      url:'/',
+      template: require('./../templates/note-list.html'),
+      controller: "noteController",
+      controllerAs: 'vm'
+    })
+    .state({
       name: 'noteList',
       url: '/note/list',
       template: require('./../templates/note-list.html'),

@@ -7,7 +7,19 @@ function noteController($cookies,$rootScope,noteService){
     vm.curPage = 0;
     vm.noteList = [];
     
+
     vm.isNoteListEmpty = false;
+
+    vm.curUser = {
+        name:'WUJA13'
+    };
+
+    vm.isLike = false;
+
+    vm.toggleLike = function(note){
+        vm.isLike =  !vm.isLike;
+        console.log(`${vm.isLike},the selected note :${note.toString()}`);
+    }
 
     // noteService.getNoteListByCustomerId("WUJA13", function( data,err){
     //     if(err){
@@ -31,6 +43,8 @@ function noteController($cookies,$rootScope,noteService){
         noteService.getNoteListSortByDate(vm.curPage ,function(err,data){
             if(err){
                 console.error(err);
+                vm.noData = true;
+                console.error("后台done 了");
             }else{
                 if(data.data){
                     if(data.data.length==0){

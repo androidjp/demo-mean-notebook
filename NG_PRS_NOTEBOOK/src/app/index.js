@@ -16,8 +16,7 @@ var ngInfiniteScroll = require('ng-infinite-scroll');
 // var angularCookies = require('angular-cookies');
 
 // var home = require('./home');
-// var customer = require('./customer');
-
+var customer = require('./customer');
 var core = require('./core');
 
 
@@ -32,6 +31,7 @@ module.exports = angular.module('notebook-app', [
     'ui.bootstrap',
     'infinite-scroll',
     // application modules
-    core
+    core,
+    customer
 ])
 ;

@@ -14,8 +14,10 @@ function noteService($http){
         if(!customerId){
             return callback(new Error("customerId is null"),null);
         }
-        $http.get("/api/note/find/"+customerId).then((noteList,err)=>{
-            callback(err, noteList);
+        $http.get("/api/note/find/"+customerId).then((noteList)=>{
+            callback(null, noteList);
+        } , (err)=>{
+            callback(err,null);
         });
     }
 
@@ -24,8 +26,10 @@ function noteService($http){
         if(page == null || page == undefined){
             return callback(new Error("page is null"),null);
         }
-        $http.get("/api/note/list/date/"+page).then((noteList,err)=>{
-            callback(err, noteList);
+        $http.get("/api/note/list/date/"+page).then((noteList)=>{
+            callback(null, noteList);
+        }  , (err)=>{
+            callback(err, null);
         });
     }
 

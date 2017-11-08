@@ -5,9 +5,9 @@
 var angular = require('angular');
 
 var customerRoutes = require('./routes/customer.routes');
-var loginController = require('./controller/login.controller');
-var registController = require('./controller/regist.controller');
-var infoController = require('./controller/info.controller');
+var loginController = require('./controllers/login.controller');
+// var registController = require('./controller/regist.controller');
+// var infoController = require('./controller/info.controller');
 var customerService = require('./services/customer.service');
 
 
@@ -16,8 +16,8 @@ const moduleName = 'customer';
 angular.module(moduleName, [])
     .config(customerRoutes)
     .controller('loginController',loginController)
-    .controller('registController',registController)
-    .controller('infoController',infoController)
+    // .controller('registController',registController)
+    // .controller('infoController',infoController)
     .factory('customerService',customerService)
 ;
 //

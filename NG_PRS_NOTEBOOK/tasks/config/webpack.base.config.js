@@ -9,6 +9,7 @@ var baseConfig = require('./base.config');
 
 var pathUtil = require('../util/path-util');
 
+
 module.exports = {
   entry: {
     main: './src/main.js',
@@ -52,7 +53,7 @@ module.exports = {
         }
       },
       {
-        test: /\.(woff|woff2|svg|ttf|eot)$/,
+        test: /\.(woff|woff2|svg|ttf|eot|otf)$/,
         loader: 'file-loader',
         options: {
           useRelativePath: false,
