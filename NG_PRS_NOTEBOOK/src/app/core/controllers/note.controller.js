@@ -16,6 +16,8 @@ function noteController($cookies,$rootScope,noteService){
 
     vm.isLike = false;
 
+    vm.isServerDone = false;
+
     vm.toggleLike = function(note){
         vm.isLike =  !vm.isLike;
         console.log(`${vm.isLike},the selected note :${note.toString()}`);
@@ -37,15 +39,15 @@ function noteController($cookies,$rootScope,noteService){
     };
 
     vm.busy = false;
-    vm.noData = false;
     vm.nextPage = function(){
         vm.busy = true;
         noteService.getNoteListSortByDate(vm.curPage ,function(err,data){
             if(err){
                 console.error(err);
-                vm.noData = true;
+                vm.isServerDone = true;
                 console.error("后台done 了");
             }else{
+                vm.isServerDone = false;
                 if(data.data){
                     if(data.data.length==0){
                         vm.noData = true;

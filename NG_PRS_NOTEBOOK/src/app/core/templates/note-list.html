@@ -9,7 +9,7 @@
     <div class="row">
 
       <div class="col-lg-8">
-        <div infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy || vm.noData' infinite-scroll-distance='0'>
+        <div infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy || vm.noData || vm.isServerDone' infinite-scroll-distance='0'>
           <div class="card text-black bg-light">
             <div class="card-body">
               <button type="button" class="btn btn-primary">Primary</button>
@@ -57,7 +57,7 @@
           </ul>
           <div ng-show='vm.busy'>Loading data...</div>
         </div>
-        <div class="card text-black bg-light" ng-show='!vm.busy&&vm.noData'>
+        <div class="card text-black bg-light" ng-show='vm.isServerDone'>
           <div class="card-body">
             <blockquote class="card-blockquote">
               <div class="bs-component">
