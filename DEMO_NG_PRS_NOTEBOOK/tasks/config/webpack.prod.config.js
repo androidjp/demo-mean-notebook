@@ -56,7 +56,7 @@ var webpackProdConfig = merge(webpackBaseConfig, {
         },
         canPrint: false
     }),
-    new ExtractTestPlugin({
+    new ExtractTextPlugin({
         filename: '[name].[chunkhash].css'
     }),
     new HtmlWebpackPlugin({
