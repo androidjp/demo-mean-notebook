@@ -4,7 +4,7 @@ module.exports = function($stateProvider){
             name:'login',
             url:'/login',
             // template:__dirname+"../template/login.html"
-            template:require('../template/login.html')
+            template:require('../templates/login.html')
         });
 }
 

@@ -38,6 +38,7 @@ function navbarController($rootScope,$scope, $cookies,$location) {
 
 
     vm.dumpPage = function(item){
+        console.log('dumpPage()');
         if(!item.url || item.url.length==0){
             return;
         }
