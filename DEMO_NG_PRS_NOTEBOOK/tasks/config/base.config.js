@@ -7,6 +7,6 @@ module.exports = {
     src: "src",
     build: "build",
     dist: "public",
-    backend_express:"../NJ_DOM_NOTEBOOK/public"
+    backend_express: "../NJ_DOM_NOTEBOOK/public"
   }
 };

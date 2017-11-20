@@ -4,29 +4,25 @@
 
 var gulp = require("gulp");
 var gutil = require("gulp-util");
+var sequence = require("gulp-sequence");
 
 var webpack = require("webpack");
 
 var WebpackDevServer = require("webpack-dev-server");
-var addDevServerEntryPoints = require("webpack-dev-server/lib/util/addDevServerEntrypoints");
+var addDevServerEntrypoints = require("webpack-dev-server/lib/util/addDevServerEntrypoints");
 
-///导入 dev 的webpack配置
+/**
+ *  dev environment
+ */
 var webpackDevConfig = require("./config/webpack.dev.config");
 
 gulp.task("serve", function() {
-  gutil.log("Webpack building dev ...........");
+  gutil.log("Webpack building.");
   gutil.log(
     webpackDevConfig.devServer.host + ":" + webpackDevConfig.devServer.port
   );
-
-  //// ????????????
-  addDevServerEntryPoints(webpackDevConfig, webpackDevConfig.devServer);
-  
-  /// 封装 webpack 的配置
+  addDevServerEntrypoints(webpackDevConfig, webpackDevConfig.devServer);
   var compilerConfig = webpack(webpackDevConfig);
-
-
-  /// 启动 Webpack Dev Server
   new WebpackDevServer(
     compilerConfig,
     webpackDevConfig.devServer
@@ -40,7 +36,6 @@ gulp.task("serve", function() {
     }
   );
 });
-
 
 //-----------------------------------
 //webpack-dev-server 参考网址：

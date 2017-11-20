@@ -1,8 +1,10 @@
 //---------------------------------------------------
 // external dependency 
 //---------------------------------------------------
-var angular = require('angular');/// angular core
-var uirouter = require('@uirouter/angularjs');/// ui-router for angular
+var angular = require('angular');
+var uirouter = require('@uirouter/angularjs');
+var angularCookies = require('angular-cookies');
+var ngInfiniteScroll = require('ng-infinite-scroll');
 
 
 //----------------------------------------------------
@@ -16,6 +18,9 @@ var user = require('./user');
 
 module.exports = angular.module('notebook-app',[
     'ui.router',
+    'ngCookies',
+    'ui.bootstrap',
+    'infinite-scroll',
     note,
     user
 ]);
