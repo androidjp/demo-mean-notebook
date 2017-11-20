@@ -24,7 +24,10 @@ app.use(session({
     resave: true,
     saveUninitialized:true
 }));
-app.use(express.static('../public'));
+// app.use(express.static('../public'));
+
+app.use(express.static(path.join(__dirname, '../public')));
+
 
 //Cross origin
 app.all('*', function (req, res, next) {

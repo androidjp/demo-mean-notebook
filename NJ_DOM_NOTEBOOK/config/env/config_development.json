@@ -5,7 +5,7 @@
         "context" : "/NJ_DOM_NOTEBOOK"
     },
 	"mongodb" : {
-		"uri":"mongodb:\/\/10.222.47.212:27017\/notebookDB",
+		"uri":"mongodb:\/\/127.0.0.1:27017\/notebookDB",
 		"options":{
 			"user": "",
 			"pass": ""

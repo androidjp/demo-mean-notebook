@@ -23,6 +23,12 @@ var webpackProdConfig = merge(webpackBaseConfig, {
     chunkFilename: "[id].[chunkhash].js"
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery",
+      "window.$": "jquery"
+    }),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: '"production"'
@@ -39,38 +45,36 @@ var webpackProdConfig = merge(webpackBaseConfig, {
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings:false
-        },
-        sourceMap: true
+      compress: {
+        warnings: false
+      },
+      sourceMap: true
     }),
     new webpack.LoaderOptionsPlugin({
-        minimize: true
+      minimize: true
     }),
     new OptimizeCssAssetsPlugin({
-        cssProcessorOptions: {
-            safe: true,
-            discardComments: {
-                removeAll: true
-            }
-        },
-        canPrint: false
+      cssProcessorOptions: {
+        safe: true,
+        discardComments: {
+          removeAll: true
+        }
+      },
+      canPrint: false
     }),
     new ExtractTextPlugin({
-        filename: '[name].[chunkhash].css'
+      filename: "[name].[chunkhash].css"
     }),
     new HtmlWebpackPlugin({
-        template: './' + baseConfig.dir.src + 
-            '/index.html',
-        favicon: './' + baseConfig.dir.src +
-            '/favicon.ico',
-        inject: true,
-        minify: {
-            removeComments: true,
-            collapseWhitespace: true,
-            removeAttributeQuotes: false
-        },
-        chunksSortMode: 'dependency'
+      template: "./" + baseConfig.dir.src + "/index.html",
+      favicon: "./" + baseConfig.dir.src + "/favicon.ico",
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: false
+      },
+      chunksSortMode: "dependency"
     })
   ]
 });

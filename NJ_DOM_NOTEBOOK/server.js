@@ -19,6 +19,8 @@ var db = mongoose.connect(config.mongodb.uri, config.mongodb.options,function(er
 });
 
 
+
+
 let server = http.createServer(app);
 
 server.listen(config.NJ_DOM_NOTEBOOK.port);

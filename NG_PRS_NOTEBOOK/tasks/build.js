@@ -10,7 +10,7 @@ var webpack = require("webpack");
 var webpackProdConfig = require("./config/webpack.prod.config");
 
 gulp.task("webpack", function(done) {
-  gutil.log("Webpack building.");
+  gutil.log("Webpack building....");
   webpack(webpackProdConfig, function(error, stats) {
     if (error) {
       throw new gutil.PluginError("webpack", error);
