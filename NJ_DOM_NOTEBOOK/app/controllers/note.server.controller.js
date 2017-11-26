@@ -5,7 +5,26 @@ module.exports = {
     saveNote:saveNote,
     getAllNote:getAllNote,
     getAllNoteByCustomerId:getAllNoteByCustomerId,
-    deleteNote: deleteNote
+    deleteNote: deleteNote,
+    getNoteDetail:getNoteDetail
+}
+
+function getNoteDetail(req, res, next){
+    var params = req.params;
+    if(_.isNull(params)){
+        return next(new Error('The noteId is null') ,req, res);
+    }
+    var noteId = params.noteId;
+    if(_.isNull(noteId)){
+        return next(new Error('The noteId is null') ,req, res);
+    }
+
+    noteService.getNoteDetail(noteId ,function(err, result){
+        if(err){
+            return next(err, req ,res);
+        }
+        return res.json(result);
+    });
 }
 
 //save note

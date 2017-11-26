@@ -8,8 +8,11 @@ module.exports = {
     saveNote: saveNote,
     searchNote: searchNote,
     deleteNote: deleteNote,
-    saveNoteToFile: saveNoteToFile
+    saveNoteToFile: saveNoteToFile,
+    getNoteDetail:getNoteDetail
 }
+
+
 
 function getNoteListByCustomerId(customerId, callback) {
     noteFacade.getNoteListByCustomerId(customerId, callback);
@@ -38,4 +41,8 @@ function saveNote(note, callback) {
 
 function saveNoteToFile(noteId, callback) {
 
+}
+
+function getNoteDetail(noteId, callback){
+    noteFacade.getNoteById(noteId, callback);
 }

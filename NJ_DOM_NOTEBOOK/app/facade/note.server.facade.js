@@ -26,7 +26,7 @@ function getNoteListByCustomerId(customerId, callback) {
     }
     noteModel.find({
         authorId: customerId
-    }, function (err, notes) {
+    } ,{cache:0}, function (err, notes) {
         if (err) {
             callback(err, null);
             return;
@@ -41,7 +41,7 @@ function getNoteListSortByCreateTime(page, callback) {
     }
     var skipCount  = page * COUNT_PER_PAGE;
 
-    noteModel.find()
+    noteModel.find({} , {cache:0})
         .sort({"createdAt":-1}).skip(skipCount).limit(COUNT_PER_PAGE).exec(function(err ,note){
             if (err) {
                 callback(err, null);
@@ -56,7 +56,7 @@ function getNoteListSortByLikeCount(page, callback) {
         page = 0;
     }
 
-    noteModel.find().sort({
+    noteModel.find({} , {cache:0}).sort({
         'liked': -1
     }).skip(page * COUNT_PER_PAGE).limit(COUNT_PER_PAGE).exec(function (err, notes) {
         if (err) {
@@ -73,12 +73,15 @@ function getNoteById(noteId, callback) {
         return;
     }
 
-    noteModel.find({
-        nodeId: nodeId
+    noteModel.findOne({
+        noteId: noteId
     }, function (err, note) {
         if (err) {
             callback(err, null);
-        } else
+        } else if(_.isNull(note)) {
+            callback(new Error("The noteId is wrong, can not find the note!"), null);
+        }
+        else
             callback(null, note);
     });
 }
