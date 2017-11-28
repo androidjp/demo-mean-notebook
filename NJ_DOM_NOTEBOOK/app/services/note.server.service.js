@@ -14,8 +14,8 @@ module.exports = {
 
 
 
-function getNoteListByCustomerId(customerId, callback) {
-    noteFacade.getNoteListByCustomerId(customerId, callback);
+function getNoteListByCustomerId(customerId , page , callback) {
+    noteFacade.getNoteListByCustomerId(customerId,page,  callback);
 }
 
 function getNoteListSortByCreateTime(page , callback){

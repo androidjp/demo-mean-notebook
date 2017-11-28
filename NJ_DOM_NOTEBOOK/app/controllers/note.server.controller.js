@@ -62,7 +62,7 @@ function getAllNoteByCustomerId(req, res, next){
         return next(new Error('The customerId is empty'), req, res);        
     }
 
-    noteService.getNoteListByCustomerId(body.customerId,function(err, result){
+    noteService.getNoteListByCustomerId(body.customerId , body.page,function(err, result){
         if(err){
             return next(err, req, res);
         }

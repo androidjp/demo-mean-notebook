@@ -19,18 +19,19 @@ module.exports = {
 }
 
 // get noteList
-function getNoteListByCustomerId(customerId, callback) {
+function getNoteListByCustomerId(customerId , page , callback) {
     if (_.isUndefined(customerId) || _.isNull(customerId) || _.isEmpty(customerId)) {
         callback(new Error("The customerId should not be empty!", null));
         return;
     }
+    var skipCount  = page * COUNT_PER_PAGE;
     noteModel.find({
         authorId: customerId
-    } ,{cache:0}, function (err, notes) {
+    } ,{cache:0}).sort({"createdAt":-1}).skip(skipCount).limit(COUNT_PER_PAGE).exec(function(err ,note){
         if (err) {
             callback(err, null);
-            return;
-        } else callback(null, notes);
+        } else
+            callback(null, note);
     });
 }
 
