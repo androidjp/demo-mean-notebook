@@ -10,11 +10,15 @@ function noteListService($http){
      * @param {any} customerId 
      * @param {function(err:Object, res:Object)} callback 
      */
-    function getNoteListByCustomerId(customerId , callback){
+    function getNoteListByCustomerId(customerId,page , callback){
         if(!customerId){
             return callback(new Error("customerId is null"),null);
         }
-        $http.get("/api/note/find/"+customerId).then((noteList)=>{
+
+        if(!page){
+            return callback(new Error("the page that you want to load is null"),null);
+        }
+        $http.get("/api/note/list/user/"+customerId+"/"+ page).then((noteList)=>{
             callback(null, noteList);
         } , (err)=>{
             callback(err,null);

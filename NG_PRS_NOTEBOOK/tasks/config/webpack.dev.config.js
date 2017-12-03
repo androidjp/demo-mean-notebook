@@ -101,7 +101,7 @@ var webpackDevConfig = merge(webpackBaseConfig, {
     // ]------------
     proxy: {
       "/api": {
-        target: PROTOCOL + HOST + ":9911/NJ_DOM_NOTEBOOOK",
+        target: PROTOCOL + HOST + ":9911/NJ_DOM_NOTEBOOK",
         secure: false,
         ws: true
       }

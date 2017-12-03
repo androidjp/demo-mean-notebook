@@ -23,16 +23,16 @@ function noteListController($cookies,$rootScope,noteListService){
         console.log(`${vm.isLike},the selected note :${note.toString()}`);
     }
 
-    // noteListService.getNoteListByCustomerId("WUJA13", function( data,err){
-    //     if(err){
-    //         console.error(err);
-    //         vm.isNoteListEmpty = true;
-    //     }else{
-    //         if(data.data){
-    //             vm.noteList = data.data;
-    //         }
-    //     }
-    // });
+    noteListService.getNoteListSortByDate(0, function(err,data){
+        if(err){
+            console.error(err);
+            vm.isNoteListEmpty = true;
+        }else{
+            if(data.data){
+                vm.noteList = data.data;
+            }
+        }
+    });
 
     vm.enterNoteItem = function(noteItem){
         
