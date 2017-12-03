@@ -52,10 +52,10 @@ describe('note.route/test.js', function(){
 
     });
 
-    describe('/api/note/find/:customerId ------------------------------------------', function(){
+    describe('[API : 获取用户的所有笔记]', function(){
         it('should get a normal json array about note' ,function(done){
             this.timeout(15000);
-            request.get('/NJ_DOM_NOTEBOOK/api/note/find/WUJA13')
+            request.get('/NJ_DOM_NOTEBOOK/api/note/list/user/WUJA13/0')
                 .expect(200, function(err, res){
                     should.not.exist(err);
                     should.exist(res.body);
@@ -63,6 +63,29 @@ describe('note.route/test.js', function(){
                 });
         });
     });
+
+    describe('[API: getNoteDetail]' , function(){
+        it('should return cache of note' , function(done){
+            this.timeout(3000);
+            request.get('/NJ_DOM_NOTEBOOK/api/note/list/user/WUJA13/0')
+            .expect(200, function(err, res){
+                should.not.exist(err);
+                should.exist(res.body);
+                var noteItem = res.body[0];
+                should.exist(noteItem);
+                should.exist(noteItem.noteId);
+                request.get('/NJ_DOM_NOTEBOOK/api/note/get/'+noteItem.noteId)
+                    .expect(200, function(err, res){
+                        
+                        should.exist(res.body);
+                        should.exist(res.body.cache);
+                        should.equal(res.body.noteId , noteItem.noteId);
+                        done();
+                    });
+            });
+        });
+    });
+
 });
 
 
