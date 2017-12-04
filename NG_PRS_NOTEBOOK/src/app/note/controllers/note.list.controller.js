@@ -23,11 +23,12 @@ function noteListController($cookies,$rootScope,noteListService){
         console.log(`${vm.isLike},the selected note :${note.toString()}`);
     }
 
-    noteListService.getNoteListSortByDate(0, function(err,data){
+    noteListService.getNoteListSortByDate("0", function(err,data){
         if(err){
             console.error(err);
             vm.isNoteListEmpty = true;
         }else{
+            console.log(JSON.stringify(data));
             if(data.data){
                 vm.noteList = data.data;
             }
