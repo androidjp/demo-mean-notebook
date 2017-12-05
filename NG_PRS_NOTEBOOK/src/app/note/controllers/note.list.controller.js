@@ -23,17 +23,7 @@ function noteListController($cookies,$rootScope,noteListService){
         console.log(`${vm.isLike},the selected note :${note.toString()}`);
     }
 
-    noteListService.getNoteListSortByDate("0", function(err,data){
-        if(err){
-            console.error(err);
-            vm.isNoteListEmpty = true;
-        }else{
-            console.log(JSON.stringify(data));
-            if(data.data){
-                vm.noteList = data.data;
-            }
-        }
-    });
+    
 
     vm.enterNoteItem = function(noteItem){
         
@@ -66,23 +56,31 @@ function noteListController($cookies,$rootScope,noteListService){
           });
     };
 
-    // (function(){
-    //     vm.busy = true;
-    //     console.log("======= vm.busy : "+ vm.busy);
-    //     noteListService.getNoteListSortByDate(0 ,function(err,data){
-    //         if(err){
-    //             console.error(err);
-    //         }else{
-    //             console.log(data);
-    //             if(data.data){
-    //                 vm.noteList = [];
-    //                 vm.noteList.push(data.data);
-    //                 vm.curPage =1;
-    //             }
-    //         }
-    //         vm.busy = false;
-    //       });
-    // })();
+    (function(){
+        vm.busy = true;
+        noteListService.getNoteListSortByDate(vm.curPage ,function(err,data){
+            if(err){
+                console.error(err);
+                vm.isServerDone = true;
+                console.error("后台done 了");
+            }else{
+                vm.isServerDone = false;
+                if(data.data){
+                    if(data.data.length==0){
+                        vm.noData = true;
+                    }else{
+                        vm.noData = false;
+                        for(var i=0;i<data.data.length;i++){
+                            vm.noteList.push(data.data[i]);
+                            
+                        }
+                        vm.curPage +=1;                        
+                    }
+                }
+            }
+            vm.busy = false;
+          });
+    })();
 
     // vm.foodList = [];
     // vm.foodTypes = homeService.getAllFoodType();
