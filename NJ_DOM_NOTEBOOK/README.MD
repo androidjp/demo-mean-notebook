@@ -1,7 +1,13 @@
 # Server Part of NoteBook Systeam
 
+## （一）配置与启动：
 ---
+* `cnpm/npm install`
+* `npm start`
+* 【test】 `npm run test`
 
+## （二）API：
+---
 ### 登录 :
 
 * 方式：POST
