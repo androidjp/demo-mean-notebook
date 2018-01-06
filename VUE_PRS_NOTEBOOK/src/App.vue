@@ -19,6 +19,19 @@
 
     <h3>以下是组件测试：</h3>
     <note_menu></note_menu>
+
+    <h3>vue-router测试：</h3>
+
+    <ul>
+      <li>
+        <router-link to="/">HOME</router-link>
+        <router-link to="/note">NOTE</router-link>
+      </li>
+    </ul>
+
+    <router-view>
+    </router-view>
+
   </div>
 </template>
 
