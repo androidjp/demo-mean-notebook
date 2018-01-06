@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <navbar></navbar>
+
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
@@ -16,10 +18,6 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
-
-    <h3>以下是组件测试：</h3>
-    <note_menu></note_menu>
-
     <h3>vue-router测试：</h3>
 
     <ul>
@@ -36,7 +34,7 @@
 </template>
 
 <script>
-import note_menu from './components/note.menu'
+import navbar from './components/navbar'
 export default {
   name: 'app',
   data () {
@@ -44,7 +42,7 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-  components:{note_menu}
+  components:{navbar}
 }
 </script>
 
@@ -55,7 +53,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 h1, h2 {
