@@ -16,17 +16,22 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
+
+    <h3>以下是组件测试：</h3>
+    <note_menu></note_menu>
   </div>
 </template>
 
 <script>
+import note_menu from './components/note.menu'
 export default {
   name: 'app',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
-  }
+  },
+  components:{note_menu}
 }
 </script>
 
