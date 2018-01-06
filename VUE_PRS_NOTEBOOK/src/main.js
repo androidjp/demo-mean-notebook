@@ -2,8 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 
 Vue.use(VueRouter);
+Vue.use(VueResource);
 
 // router load components
 import home from './components/home.vue';
@@ -23,10 +25,7 @@ const router = new VueRouter({
   ]
 });
 
-// new Vue({
-//   el: '#app',
-//   render: h => h(App)
-// })
+
 
 const app = new Vue({
   router: router,
