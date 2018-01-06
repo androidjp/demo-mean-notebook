@@ -12,9 +12,9 @@ Vue.use(VueResource);
 Vue.use(iView);
 
 /// my router config
-import Routers from './router';
+import RouterConfig from './router';
 
-const router = new VueRouter(Routers);
+const router = new VueRouter(RouterConfig);
 
 const app = new Vue({
   router: router,
