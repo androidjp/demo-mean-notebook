@@ -3,7 +3,9 @@
     <h1>{{homeTitle}}</h1>
     <ul>
       <li v-for="note in notes">
-        {{note.title}}
+        <Tag type="dot" closable color="blue">
+          {{note.title}}
+        </Tag>
       </li>
     </ul>
   </div>
@@ -42,3 +44,6 @@ export default {
   }
 };
 </script>
+<style>
+
+</style>
