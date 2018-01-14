@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <navbar></navbar>
-
+    <!-- <navbar></navbar> -->
+<!--
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
@@ -25,7 +25,7 @@
         <router-link to="/">HOME</router-link>
         <router-link to="/note">NOTE</router-link>
       </li>
-    </ul>
+    </ul> -->
 
     <router-view>
     </router-view>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import navbar from './components/navbar'
+// import navbar from './components/navbar'
 export default {
   name: 'app',
   data () {
@@ -42,7 +42,7 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-  components:{navbar}
+  // components:{navbar}
 }
 </script>
 

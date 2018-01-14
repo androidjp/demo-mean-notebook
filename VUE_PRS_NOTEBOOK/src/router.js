@@ -1,5 +1,5 @@
 // router load components
-import home from "./components/home.vue";
+import home from "./components/home/home.vue";
 import note from "./components/note.vue";
 
 // {
