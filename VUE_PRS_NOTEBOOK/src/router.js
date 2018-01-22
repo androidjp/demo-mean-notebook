@@ -1,12 +1,5 @@
-// router load components
 import home from "./components/home/home.vue";
-import note from "./components/note.vue";
 
-// {
-//   mode: 'history',
-//   base: __dirname,
-//   routes: Routers
-// }
 export default {
   mode: "history",
   base: __dirname,
@@ -14,10 +7,6 @@ export default {
     {
       path: "/",
       component: home
-    },
-    {
-      path: "/note",
-      component: note
     }
   ]
 };

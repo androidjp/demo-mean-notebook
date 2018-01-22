@@ -16,3 +16,13 @@ npm run build
 ```
 
 For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## technical stack
+* vue
+* Webpack
+* vue-router
+* vue-resource
+* UI：iview
+
+## iview grid
+* 四种响应尺寸：`:xs="2"` `:sm="4"` `:md="6"` `:lg="8"`
