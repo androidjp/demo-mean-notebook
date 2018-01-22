@@ -1,12 +1,9 @@
-import home from "./components/home/home.vue";
+import home from "./components/home/route";
 
 export default {
   mode: "history",
   base: __dirname,
   routes: [
-    {
-      path: "/",
-      component: home
-    }
+    home
   ]
 };

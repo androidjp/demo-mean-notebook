@@ -52,47 +52,10 @@
                 </Menu>
             </Header>
             <Content :style="{margin: '88px 20px 0', background: '#fff', minHeight: '500px'}">
-                <ul>
-                <li v-for="note in notes">
-                  <Tag type="dot" closable color="blue">
-                    {{note.title}}
-                  </Tag>
-                <li/>
-              </ul>
+                <router-view></router-view>
             </Content>
             <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
         </Layout>
     </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      notes: []
-    };
-  },
-  mounted: function() {
-    this.$http
-      .jsonp(
-        "https://api.douban.com/v2/movie/top250?count=10",
-        {},
-        {
-          headers: {},
-          emulateJSON: true
-        }
-      )
-      .then(
-        function(response) {
-          // 这里是处理正确的回调
 
-          this.notes = response.data.subjects;
-          // this.articles = response.data["subjects"] 也可以
-        },
-        function(response) {
-          // 这里是处理错误的回调
-          console.log(response);
-        }
-      );
-  }
-};
-</script>
