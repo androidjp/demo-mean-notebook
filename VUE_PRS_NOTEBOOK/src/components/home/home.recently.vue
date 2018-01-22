@@ -11,17 +11,23 @@
         </Tag>
       <li/>
     </ul>
+    <br>
+    <card-recommand></card-recommand>
     </Col>
   </Row>
 </template>
 
 <script>
+import cardRecommand from './../card/card.recommand'
+import cardNote from './../card/card.note'
 export default {
   data() {
     return {
-      notes: []
+      notes: [],
+      recommandNotes: []
     };
   },
+  components : {cardRecommand , cardNote},
   mounted: function() {
     this.$http
       .jsonp(
