@@ -44,14 +44,10 @@
                             <Icon type="ios-analytics"></Icon>
                             Item 3
                         </MenuItem>
-                        <MenuItem name="4">
-                            <Icon type="ios-paper"></Icon>
-                            Item 4
-                        </MenuItem>
                     </div>
                 </Menu>
             </Header>
-            <Content :style="{margin: '88px 20px 0', background: '#fff', minHeight: '500px'}">
+            <Content :style="{padding: '88px 20px 0', background: '#eee', minHeight: '500px'}">
                 <router-view></router-view>
             </Content>
             <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
