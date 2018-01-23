@@ -1,29 +1,43 @@
 <template>
-  <Row :gutter="16">
-    <Col span="16">
-    col-12
+
+  <Row>
+    <Col span="18" push="4">
+      <card-note></card-note>
     </Col>
-    <Col span="8">
-    <ul>
-      <li v-for="note in notes">
-        <Tag type="dot" closable color="blue">
-          {{note.title}}
-        </Tag>
-      <li/>
-    </ul>
-    <br>
-    <card-recommand></card-recommand>
+    <Col span="6" pull="4">
+      <ul>
+        <li v-for="movie in hotMovies">
+          <Tag type="dot" closable color="blue">
+            {{movie.title}}
+          </Tag>
+        <li/>
+      </ul>
+      <br>
+      <card-recommand></card-recommand>
     </Col>
   </Row>
+
+
 </template>
 
 <script>
 import cardRecommand from './../card/card.recommand'
 import cardNote from './../card/card.note'
+
 export default {
   data() {
     return {
-      notes: [],
+      notes:[
+        {
+          user:{
+            userName: 'Amy'
+          },
+          publicTime: '01/01/2018',
+          title:'Vue入门到青铜',
+          img:''
+        }
+      ],
+      hotMovies: [],
       recommandNotes: []
     };
   },
@@ -42,7 +56,7 @@ export default {
         function(response) {
           // 这里是处理正确的回调
 
-          this.notes = response.data.subjects;
+          this.hotMovies = response.data.subjects;
           // this.articles = response.data["subjects"] 也可以
         },
         function(response) {
