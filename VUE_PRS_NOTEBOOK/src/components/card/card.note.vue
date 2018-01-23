@@ -34,6 +34,7 @@
     font-size: 18px;
     font-weight: 700;
     line-height: 1.5;
+    padding-right: 140px;
   }
 
   .abstract {
@@ -75,7 +76,7 @@
 
 </style>
 <template>
-  <Card style="width:700px;text-align:left;">
+  <Card style="width:90%;text-align:left;margin:1.2em;">
 
     <li id="note-23000185" data-note-id="23000185" class="have-img">
       <a class="wrap-img" href="/p/d756572a5045" target="_blank">

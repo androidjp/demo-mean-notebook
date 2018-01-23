@@ -1,5 +1,5 @@
 <template>
-  <Card style="width:350px">
+  <Card style="width:360px;margin:6px;">
         <p slot="title">
             <Icon type="ios-film-outline"></Icon>
             Classic film

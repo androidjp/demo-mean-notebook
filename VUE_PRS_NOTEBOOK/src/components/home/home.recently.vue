@@ -1,10 +1,10 @@
 <template>
 
-  <Row>
-    <Col span="18" push="4">
-      <card-note></card-note>
+  <Row type="flex" justify="center">
+    <Col span="12">
+      <card-note style="margin-right:6px;"></card-note>
     </Col>
-    <Col span="6" pull="4">
+    <Col span="6">
       <ul>
         <li v-for="movie in hotMovies">
           <Tag type="dot" closable color="blue">
