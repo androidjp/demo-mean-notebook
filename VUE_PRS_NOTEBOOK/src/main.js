@@ -13,9 +13,12 @@ Vue.use(iView);
 
 import RouterConfig from './router';
 
+import store from './store'
+
 const router = new VueRouter(RouterConfig);
 
 const app = new Vue({
   router: router,
+  store:store,
   render: h => h(App)
 }).$mount('#app')
