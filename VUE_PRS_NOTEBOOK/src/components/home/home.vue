@@ -24,6 +24,11 @@
 .layout-footer-center {
   text-align: center;
 }
+
+router-link {
+  color:white;
+}
+
 </style>
 <template>
     <div class="layout">
@@ -32,17 +37,11 @@
                 <Menu mode="horizontal" theme="dark" active-name="1">
                     <div class="layout-logo"></div>
                     <div class="layout-nav">
-                        <MenuItem name="1">
-                            <Icon type="ios-navigate"></Icon>
-                            Item 1
-                        </MenuItem>
-                        <MenuItem name="2">
-                            <Icon type="ios-keypad"></Icon>
-                            Item 2
-                        </MenuItem>
-                        <MenuItem name="3">
-                            <Icon type="ios-analytics"></Icon>
-                            Item 3
+                        <MenuItem v-for="menuItem in menu">
+                            <router-link :to="menuItem.link" tag='li'>
+                              <Icon :type="menuItem.icon"></Icon>
+                              {{menuItem.tag}}
+                            </router-link>
                         </MenuItem>
                     </div>
                 </Menu>
@@ -50,8 +49,33 @@
             <Content :style="{padding: '88px 20px 0', background: '#eee', minHeight: '500px'}">
                 <router-view></router-view>
             </Content>
-            <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
+            <Footer class="layout-footer-center">2017-2018 &copy; Jasper Wu</Footer>
         </Layout>
     </div>
 </template>
 
+<script>
+  export default {
+    data() {
+      return {
+        menu:[
+          {
+            tag:'首页',
+            icon:'ios-navigate',
+            link:'/'
+          },
+          {
+            tag:'写文章',
+            icon:'edit',
+            link:'/edit'
+          },
+          {
+            tag:'我的',
+            icon:'person',
+            link:'/user'
+          }
+        ]
+      }
+    }
+  }
+</script>
