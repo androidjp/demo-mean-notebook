@@ -25,12 +25,12 @@
 
 <template>
   <Layout :style="{marginLeft: '200px', height:'100%'}">
-      <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}" v-show="config.isEditingANote">
-        <input type="text" class="note-input" placeholder="输入标题" v-model="title" @change="editNoteTitle({title:title})"></input>
+      <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}" v-if="activeNote!=null">
+        <input type="text" class="note-input" placeholder="输入标题" v-model="activeNote.title" @change="editNoteTitle({title:title})"></input>
       </Header>
-      <Content
-        <textarea v-show="config.isEditingANote" class="form-control note-textarea" v-model="content" @change="editNote({content:content})" placeholder="输入笔记内容"></textarea>
-        <div v-show="!config.isEditingANote" :style="{position:'relative',margin:'25% 48%', width:'500px'}">
+      <Content>
+        <textarea v-if="activeNote != null" class="form-control note-textarea" v-model="activeNote.content" @change="editNote({content:content})" placeholder="输入笔记内容"></textarea>
+        <div v-if="!activeNote" :style="{position:'relative',margin:'25% 48%', width:'500px'}">
           <Icon type="ionic" size="60" style='margin-left:6%'></Icon>
           <p>请选择笔记进行编辑</p>
         </div>
@@ -47,23 +47,17 @@ import {
 export default {
   data() {
     return {
-      config: {
-        isEditingANote: false
-      }
     };
   },
   computed: {
     ...mapState({
-      activeNote: state => state.activeNote,
-      notes: state => state.notes
+      activeNote: state => state.activeNote
     })
   },
   methods: {
     ...mapActions({
-      addNote: "addNote",
       editNoteTitle: "editNoteTitle",
-      editNote: "editNote",
-      deleteNote: "deleteNote"
+      editNote: "editNote"
     })
   },
   mounted: function () {
